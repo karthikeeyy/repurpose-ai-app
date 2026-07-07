@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Draft Editor - RepurposeFlow</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#fffbff",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#bec6e0",
+                    "on-background": "#0b1c30",
+                    "secondary-container": "#8a4cfc",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container-high": "#dce9ff",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "secondary": "#712ae2",
+                    "surface": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "primary-container": "#131b2e",
+                    "on-primary-container": "#7c839b",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#45464d",
+                    "outline": "#76777d",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#131b2e",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed": "#eaddff",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#25005a",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#3980f4",
+                    "surface-bright": "#f8f9ff",
+                    "surface-tint": "#565e74",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary-container": "#001a42",
+                    "primary-fixed": "#dae2fd",
+                    "on-tertiary-fixed-variant": "#004395"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "lg": "48px",
+                    "sm": "12px",
+                    "xl": "80px",
+                    "container-max": "1280px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .editor-container:focus-within {
+            border-color: #712ae2;
+            box-shadow: 0 0 0 4px rgba(138, 76, 252, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            color: #712ae2;
+            border-bottom: 2px solid #712ae2;
+        }
+        @media (max-width: 767px) {
+            .mobile-hide { display: none; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface shadow-sm">
+<div class="flex items-center justify-between px-gutter w-full max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">e_mobiledata</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">RepurposeFlow</h1>
+</div>
+<!-- Desktop Desktop Navigation (Top-level shell logic) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Source</a>
+<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Projects</a>
+<a class="text-primary font-label-bold text-label-bold px-3 py-2 rounded-lg border-b-2 border-secondary" href="#">Editor</a>
+<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Library</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-surface-container-high transition-colors">settings</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter py-md md:py-lg pb-32">
+<!-- Editor Header Area -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-md gap-4">
+<div>
+<h2 class="font-headline-md text-headline-md mb-xs">Project: AI Ethics Breakdown</h2>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Last saved: 2 minutes ago</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-bold text-label-bold hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">history</span>
+                    Versions
+                </button>
+<button class="flex items-center gap-2 bg-secondary text-on-secondary px-6 py-2 rounded-lg font-label-bold text-label-bold shadow-lg hover:translate-y-[-2px] active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+                    Schedule
+                </button>
+</div>
+</div>
+<!-- Bento Layout for Editor and AI Tools -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content Area: Tabbed Editor (Col 1-8) -->
+<div class="lg:col-span-8 flex flex-col gap-base">
+<!-- Platform Tabs -->
+<div class="flex items-center gap-md border-b border-outline-variant px-1">
+<button class="platform-tab py-3 px-2 active-tab flex items-center gap-2 font-label-bold text-label-bold transition-all" id="tab-linkedin" onclick="switchPlatform('linkedin')">
+<span class="material-symbols-outlined text-md">share</span> LinkedIn
+                    </button>
+<button class="platform-tab py-3 px-2 text-on-surface-variant flex items-center gap-2 font-label-bold text-label-bold transition-all hover:text-secondary" id="tab-twitter" onclick="switchPlatform('twitter')">
+<span class="material-symbols-outlined text-md">chat_bubble</span> X (Twitter)
+                    </button>
+<button class="platform-tab py-3 px-2 text-on-surface-variant flex items-center gap-2 font-label-bold text-label-bold transition-all hover:text-secondary" id="tab-newsletter" onclick="switchPlatform('newsletter')">
+<span class="material-symbols-outlined text-md">mail</span> Newsletter
+                    </button>
+</div>
+<!-- Editor Surface -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] flex flex-col min-h-[500px] border border-transparent editor-container transition-all">
+<!-- Editor Toolbar -->
+<div class="flex items-center gap-2 p-3 border-b border-surface-container overflow-x-auto">
+<button class="p-2 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant"><span class="material-symbols-outlined">format_bold</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant"><span class="material-symbols-outlined">format_italic</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+<div class="w-px h-6 bg-outline-variant mx-1"></div>
+<button class="p-2 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant"><span class="material-symbols-outlined">link</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant"><span class="material-symbols-outlined">image</span></button>
+<div class="ml-auto flex items-center gap-4">
+<span class="text-on-surface-variant font-label-caps text-label-caps">1,240 CHARACTERS</span>
+<button class="flex items-center gap-1 text-secondary font-label-bold text-label-bold hover:bg-secondary-fixed px-3 py-1 rounded-full transition-colors" onclick="copyContent()">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                            </button>
+</div>
+</div>
+<!-- Text Area -->
+<div class="flex-grow p-gutter">
+<div class="w-full h-full outline-none font-body-lg text-body-lg leading-relaxed text-on-surface" contenteditable="true" id="editor-field" placeholder="Write your post here...">
+<p class="mb-4"><strong>The AI shift isn't coming—it's already here.</strong></p>
+<p class="mb-4">Most creators think about AI as a tool for generation, but the real power lies in the strategic repurposing of high-performing core ideas. In my latest deep dive into the 2024 content landscape, I noticed three critical shifts:</p>
+<ul class="list-disc ml-6 mb-4 space-y-2">
+<li><strong>Semantic Search:</strong> Intent matters more than keywords.</li>
+<li><strong>Omnichannel Nuance:</strong> You can't just copy-paste. LinkedIn needs context; X needs punch.</li>
+<li><strong>Human Synthesis:</strong> The last 10% is where the value lives.</li>
+</ul>
+<p>What's your strategy for scaling your voice this year? 👇</p>
+<p class="text-secondary">#ContentStrategy #AIFuture #CreatorEconomy</p>
+</div>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="flex items-center justify-between mt-sm">
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high text-on-surface rounded-lg font-label-bold text-label-bold hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined">auto_fix</span>
+                            Regenerate Hook
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline text-on-surface rounded-lg font-label-bold text-label-bold hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">tag</span>
+                            Suggest Tags
+                        </button>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full text-on-surface-variant font-label-bold text-label-bold">
+<span class="material-symbols-outlined text-sm text-green-500" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        LinkedIn ready
+                    </div>
+</div>
+</div>
+<!-- Sidebar: Context & Preview (Col 9-12) -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Performance Prediction Card -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-container">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-sm text-headline-sm">Smart Score</h3>
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded text-label-bold">84%</span>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mb-1">
+<span>Readability</span>
+<span>High</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[90%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mb-1">
+<span>Hook Strength</span>
+<span>Medium</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[65%]"></div>
+</div>
+</div>
+</div>
+<div class="mt-md p-3 bg-surface-container-low rounded-lg border-l-4 border-secondary">
+<p class="text-body-sm text-on-surface-variant italic">"Try starting with a direct question or a bold statistic to improve engagement by ~15%."</p>
+</div>
+</div>
+<!-- Asset Preview -->
+<div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-container">
+<div class="p-md flex justify-between items-center border-b border-surface-container">
+<h3 class="font-headline-sm text-headline-sm">Media Preview</h3>
+<button class="text-secondary font-label-bold text-label-bold">Edit</button>
+</div>
+<div class="relative group">
+<img class="w-full aspect-video object-cover" data-alt="A clean, professional 3D isometric illustration of a digital strategist's workstation with floating social media icons like LinkedIn and X. The aesthetic is modern minimalism with a soft purple and blue color palette, featuring bright lighting and sleek glass surfaces to match the RepurposeFlow brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDedQEq9FtVggqr6OdFnxhPaTenfljB3nNSkvxMaHJHqGTlamZfdSFEpFtlztTT3HnhvwM1r5h4b_zYS82xodyW9lEu7SOJrAhIkDtB9vjbsbhziiaK7vdx3M7pvUi14bV1CNFRua1xwX4m_2HmlE-ysi9DOcfrKHbLE5HHPrKmKWIjEjhvpMvPEJf6v1UH4TW28WGDpPUGSspQ_x5TEZpSWTbp6t6rM8wQkkd39Uvmt4iR1hUEoH9MyYM2BZAFeo3A1RmqL_GLrzYh"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+</div>
+</div>
+<div class="p-md">
+<p class="text-body-sm font-label-bold text-on-surface">strategy-hero-dark.png</p>
+<p class="text-body-sm text-on-surface-variant">1200 x 627 • PNG</p>
+</div>
+</div>
+<!-- Source Link Card -->
+<div class="bg-surface-container p-md rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">source</span>
+<div>
+<p class="text-label-caps text-on-surface-variant">ORIGINAL SOURCE</p>
+<p class="text-label-bold text-on-surface truncate">YouTube: How to Scale Content 2024</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] flex justify-around items-center px-4 py-3 pb-safe rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-bold text-label-bold">Source</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-label-bold text-label-bold">Editor</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-bold text-label-bold">Library</span>
+</a>
+</footer>
+<!-- FAB (Suppressed based on context rules, but included for Dashboard-like screens if needed) -->
+<!-- The FAB is suppressed here as per rules for "Details" or "Task-Focused" screens. -->
+<script>
+        function switchPlatform(platform) {
+            const tabs = document.querySelectorAll('.platform-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+                tab.classList.add('text-on-surface-variant');
+                tab.classList.remove('text-secondary');
+            });
+
+            const activeTab = document.getElementById(`tab-${platform}`);
+            activeTab.classList.add('active-tab');
+            activeTab.classList.remove('text-on-surface-variant');
+
+            // Simulate content change
+            const editor = document.getElementById('editor-field');
+            if(platform === 'twitter') {
+                editor.innerHTML = `<p>The AI shift isn't coming—it's already here. 🧵<br><br>3 critical shifts creators need to know for 2024:<br><br>1/ Semantic Intent > Keywords<br>2/ Context > Copy-Paste<br>3/ Strategy > Generation<br><br>Full breakdown below 👇</p>`;
+            } else if(platform === 'newsletter') {
+                editor.innerHTML = `<h3>The Strategic Repurposing Playbook</h3><p>Hi everyone,</p><p>We talk a lot about AI tools, but we rarely talk about AI strategy...</p>`;
+            } else {
+                editor.innerHTML = `<p><strong>The AI shift isn't coming—it's already here.</strong></p><p>Most creators think about AI as a tool for generation...</p>`;
+            }
+        }
+
+        function copyContent() {
+            const content = document.getElementById('editor-field').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                const copyBtn = event.currentTarget;
+                const originalContent = copyBtn.innerHTML;
+                copyBtn.innerHTML = `<span class="material-symbols-outlined text-sm">check</span> Copied!`;
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalContent;
+                }, 2000);
+            });
+        }
+
+        // Initialize micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>
