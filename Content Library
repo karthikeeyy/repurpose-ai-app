@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepurposeFlow | Content Library</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#fffbff",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#bec6e0",
+                    "on-background": "#0b1c30",
+                    "secondary-container": "#8a4cfc",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container-high": "#dce9ff",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "secondary": "#712ae2",
+                    "surface": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "primary-container": "#131b2e",
+                    "on-primary-container": "#7c839b",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#45464d",
+                    "outline": "#76777d",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#131b2e",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed": "#eaddff",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#25005a",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#3980f4",
+                    "surface-bright": "#f8f9ff",
+                    "surface-tint": "#565e74",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary-container": "#001a42",
+                    "primary-fixed": "#dae2fd",
+                    "on-tertiary-fixed-variant": "#004395"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "lg": "48px",
+                    "sm": "12px",
+                    "xl": "80px",
+                    "container-max": "1280px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow {
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 30px rgba(15, 23, 42, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c6c6cd;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface shadow-sm dark:bg-surface-container">
+<div class="flex items-center justify-between px-gutter w-full max-w-container-max mx-auto py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-white font-bold overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a modern content strategist, with clean cinematic lighting and a soft-focus office background, reflecting the authoritative and efficient brand identity of a high-end SaaS platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg9iKy_Ioe9VYhvo7BJgrmpnL2b7j-0FjqPfMm_7K4tP2OspKMasVRDtXL50qsxIFItqRBs97QF5JZDJoYbYAZiyARQxJE5oAa_1W85ZuEvABjrG_ufhcXoNt0zvndgg7aj-8PBkzw1zkoJGUrymSd828je6BQEmcgoXnaC4ledgzWn5ehM5PW4Tu51AIClrEV-GnpQg59BGk7HyiIl3hXCpi3_sMOiYT61bD9qXb5w_UHlBfGIsOYeO2wHQUt7zqZq2lAIA1uOE88"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">RepurposeFlow</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 transition-transform">
+                    search
+                </button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 transition-transform">
+                    settings
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-container-max mx-auto px-gutter py-md">
+<!-- Search and Filter Section -->
+<section class="mb-lg">
+<div class="relative w-full mb-md group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-secondary transition-colors">search</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-secondary focus:border-transparent outline-none font-body-md transition-all custom-shadow" placeholder="Search past transcripts, posts, or keywords..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-2 items-center">
+<span class="font-label-bold text-label-bold text-outline-variant mr-2">CATEGORIES:</span>
+<button class="px-4 py-1.5 rounded-full bg-secondary text-on-secondary font-label-bold text-label-bold shadow-md">All Posts</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-colors font-label-bold text-label-bold">#productivity</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-colors font-label-bold text-label-bold">#marketing</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-colors font-label-bold text-label-bold">#tech_trends</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-colors font-label-bold text-label-bold">#saas_growth</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-colors font-label-bold text-label-bold">#branding</button>
+</div>
+</section>
+<!-- Archived Projects Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Project Card 1 -->
+<div class="bg-surface-container-lowest p-md rounded-xl custom-shadow interactive-card transition-all flex flex-col gap-4 border-l-4 border-secondary">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Mastering Async Work</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">Transcribed from Zoom Masterclass</p>
+</div>
+<div class="bg-surface-container-high p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary">description</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps">#PRODUCTIVITY</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps">#MANAGEMENT</span>
+</div>
+<div class="pt-4 mt-auto border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-outline">OCT 12, 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" title="X (Twitter)">1k</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" title="LinkedIn">share</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" title="Email">mail</span>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-surface-container-lowest p-md rounded-xl custom-shadow interactive-card transition-all flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">The 2024 AI Roadmap</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">Newsletter Series - Draft V2</p>
+</div>
+<div class="bg-surface-container-high p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary">auto_awesome</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps">#MARKETING</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps">#TECH</span>
+</div>
+<div class="pt-4 mt-auto border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-outline">OCT 08, 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">share</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">mail</span>
+</div>
+</div>
+</div>
+<!-- Project Card 3 (Bento-ish variant) -->
+<div class="lg:row-span-2 bg-primary-container p-md rounded-xl custom-shadow interactive-card transition-all flex flex-col text-on-primary-container relative overflow-hidden">
+<div class="z-10 flex flex-col h-full">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-display-lg-mobile text-display-lg-mobile text-surface-container-lowest max-w-[180px]">Weekly Digest Hub</h3>
+<span class="material-symbols-outlined text-surface-container-lowest text-4xl">folder_special</span>
+</div>
+<p class="font-body-md text-body-md opacity-80 mb-8">Centralized repository for all recurring weekly content sequences.</p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+<span class="font-body-sm text-body-sm">Platform Strategy Q3</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+<span class="font-body-sm text-body-sm">Client Retention Series</span>
+</li>
+</ul>
+<div class="mt-auto">
+<button class="w-full py-3 bg-secondary text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2">
+                            OPEN VAULT <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Subtle graphic background -->
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="bg-surface-container-lowest p-md rounded-xl custom-shadow interactive-card transition-all flex flex-col gap-4 border-l-4 border-outline-variant">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Branding Visual Style</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">Asset Guidelines</p>
+</div>
+<div class="bg-surface-container-high p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary">palette</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps">#BRANDING</span>
+</div>
+<div class="pt-4 mt-auto border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-outline">SEP 29, 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">share</span>
+</div>
+</div>
+</div>
+<!-- Project Card 5 -->
+<div class="bg-surface-container-lowest p-md rounded-xl custom-shadow interactive-card transition-all flex flex-col gap-4 border-l-4 border-error">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Growth Hacking 101</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">Interview with Marketing Lead</p>
+</div>
+<div class="bg-surface-container-high p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary">mic</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps">#SAAS_GROWTH</span>
+</div>
+<div class="pt-4 mt-auto border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-outline">SEP 15, 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">1k</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">share</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">mail</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats / Atmospheric Section -->
+<section class="mt-lg grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="md:col-span-2 bg-surface-container p-lg rounded-2xl flex flex-col md:flex-row items-center gap-lg">
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Library Insights</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">You've repurposed 42 hours of audio this month into 128 unique platform-ready posts.</p>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4 rounded-full"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-bold text-label-bold text-outline">
+<span>75% Monthly Goal</span>
+<span>128/170 Posts</span>
+</div>
+</div>
+<div class="w-full md:w-48 h-48 rounded-xl bg-white flex items-center justify-center p-4 shadow-sm">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat" data-alt="A clean data visualization graphic showing a circular growth chart with electric blue and purple gradients. The visual is minimalist, modern, and high-energy, set against a pristine white background to maintain a professional SaaS aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLZMqQAnNzByfGAsdpJmLwKwHJ-QY1lYUinYmOEMoJjZj350IYqDLdtVVhEWrB_25YgF0xGD_k2fJ2QZwChJDqMbO5cptLqdyZufsfGFBpeaxDdNKU0FZItw2CxUx_0cv6bkRG0xz_sOKsIbgkAK-cshdKYBVPgraanP6JGlLwRhfxkZDXhOehqp828_0mUMdix38cKs7ZUVj_K4fOPVSM43krI7Zdle04u41KIwn6_oC9tqfF-slIcHH4fzcI-5i_0gCeqymHKf9r')"></div>
+</div>
+</div>
+<div class="bg-secondary-container p-lg rounded-2xl flex flex-col justify-center items-center text-center text-white">
+<span class="material-symbols-outlined text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h4 class="font-headline-sm text-headline-sm mb-2">Ready to expand?</h4>
+<p class="font-body-sm text-body-sm opacity-90 mb-6">Create a new post sequence from your existing library assets with 1-click AI.</p>
+<button class="bg-white text-secondary px-6 py-2 rounded-lg font-label-bold text-label-bold active:scale-95 transition-transform">
+                    REPURPOSE NOW
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-bold text-label-bold">Source</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-label-bold text-label-bold">Editor</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-bold text-label-bold">Library</span>
+</a>
+</nav>
+<!-- FAB for New Post -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-gradient-to-tr from-secondary to-[#8a4cfc] text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-all duration-200 z-40 group">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform">add</span>
+</button>
+<script>
+        // Simple Micro-interaction: Search Focus
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+
+        // Dynamic Active Tab logic
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Prevent default for demo
+                // e.preventDefault();
+            });
+        });
+    </script>
+</body></html>
