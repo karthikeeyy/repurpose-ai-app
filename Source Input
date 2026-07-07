@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepurposeFlow - Source Input</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Montserrat:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#fffbff",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#bec6e0",
+                    "on-background": "#0b1c30",
+                    "secondary-container": "#8a4cfc",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container-high": "#dce9ff",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "secondary": "#712ae2",
+                    "surface": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "primary-container": "#131b2e",
+                    "on-primary-container": "#7c839b",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#45464d",
+                    "outline": "#76777d",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#131b2e",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed": "#eaddff",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#25005a",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#3980f4",
+                    "surface-bright": "#f8f9ff",
+                    "surface-tint": "#565e74",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary-container": "#001a42",
+                    "primary-fixed": "#dae2fd",
+                    "on-tertiary-fixed-variant": "#004395"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "lg": "48px",
+                    "sm": "12px",
+                    "xl": "80px",
+                    "container-max": "1280px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .custom-shadow {
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c6c6cd;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #76777d;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-background shadow-sm flex items-center justify-between px-gutter py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional high-fidelity avatar portrait of a creative strategist, featuring clean studio lighting and a vibrant minimalist background that reflects the Electric Purple and Blue brand colors. The style is modern, sleek, and authoritative, suitable for a high-end SaaS application profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8hsZ6Ddfjk83yQ-bYyqIiMZejnpM-t5JZoSU4tdhzM54IwuKGIaBc0L3Mp3USNTvxyMgDlQEp8F9mA2MFtRmJrcvg-0NRE24oX7FaR4ejQDZHt86o3ku3NxVckOORBq4hmAfSq-LDdj6eNUhq1z94ZLxsTiqZkz2i6BDW-pzBbY2lZeoF0xh0TkR67ZHs9yctJ1fDJLqS5-n6bRqGgUPvLVJQwUq0WhcDUazY-qMCQfTM3q25nEWZop_h7chWXpmst7NOeelciJP-"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">RepurposeFlow</h1>
+</div>
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform text-on-surface-variant">
+            settings
+        </button>
+</header>
+<main class="max-w-container-max mx-auto px-gutter pt-lg lg:pt-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
+<!-- Left Column: Instructions & Context -->
+<div class="lg:col-span-4 flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Knowledge Ingestion</span>
+<h2 class="font-display-lg-mobile lg:font-display-lg text-display-lg-mobile lg:text-display-lg text-primary leading-tight">Feed the Machine.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mt-4">
+                    Paste your video transcripts, upload strategy documents, or drop a URL. Our AI extracts core insights to fuel your multi-channel content engine.
+                </p>
+<div class="mt-lg p-6 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-container">auto_awesome</span>
+<div>
+<h4 class="font-label-bold text-label-bold text-on-surface">Pro Tip</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Detailed transcripts yield 40% higher accuracy in hook generation.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Input Interface (Bento Style) -->
+<div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Main Text Area (Transcripts) -->
+<div class="md:col-span-2 glass-card rounded-xl p-6 custom-shadow">
+<div class="flex items-center justify-between mb-4">
+<label class="font-label-bold text-label-bold text-on-surface-variant">PASTE TRANSCRIPT</label>
+<span class="text-xs text-outline italic">Supports up to 50k characters</span>
+</div>
+<textarea class="w-full h-64 bg-surface-container-lowest border-none rounded-lg p-4 font-body-md focus:ring-2 focus:ring-secondary transition-all resize-none placeholder:text-outline-variant" placeholder="Paste your raw text or video transcript here..."></textarea>
+</div>
+<!-- URL Input -->
+<div class="glass-card rounded-xl p-6 custom-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary">link</span>
+<label class="font-label-bold text-label-bold text-on-surface-variant uppercase">Paste URL</label>
+</div>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-md px-4 py-3 focus:border-secondary focus:ring-0 transition-colors" placeholder="https://youtube.com/..." type="text"/>
+<p class="text-[11px] text-outline mt-3">YouTube, Spotify, or Medium links supported.</p>
+</div>
+</div>
+<!-- File Upload -->
+<div class="glass-card rounded-xl p-6 custom-shadow flex flex-col justify-between border-dashed border-2 border-outline-variant/50 hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex flex-col items-center justify-center py-4 text-center">
+<div class="w-12 h-12 rounded-full bg-secondary-container/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary">upload_file</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-on-surface">Upload Document</h4>
+<p class="text-[11px] text-outline mt-1">PDF, DOCX, TXT (Max 20MB)</p>
+</div>
+</div>
+<!-- Primary CTA -->
+<div class="md:col-span-2 flex justify-end pt-4">
+<button class="bg-secondary text-on-secondary px-xl py-4 rounded-md font-label-bold text-label-bold flex items-center gap-3 hover:shadow-lg hover:shadow-secondary/20 hover:-translate-y-1 active:scale-95 transition-all duration-300">
+                        Extract Insights
+                        <span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">add_circle</span>
+<span class="font-label-bold text-label-bold">Source</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-label-bold text-label-bold">Editor</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-bold text-label-bold">Library</span>
+</a>
+</nav>
+<!-- Background Atmospheric Effect -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+<div class="absolute -top-[10%] -right-[5%] w-[40%] h-[40%] bg-secondary-container/5 blur-[120px] rounded-full"></div>
+<div class="absolute top-[40%] -left-[10%] w-[30%] h-[50%] bg-primary-fixed/10 blur-[100px] rounded-full"></div>
+</div>
+<script>
+        // Micro-interactions
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('focus', () => {
+            textarea.closest('.glass-card').classList.add('ring-2', 'ring-secondary/20');
+        });
+        textarea.addEventListener('blur', () => {
+            textarea.closest('.glass-card').classList.remove('ring-2', 'ring-secondary/20');
+        });
+
+        // Simple animation for the Extract Insights button
+        const btn = document.querySelector('button.bg-secondary');
+        btn.addEventListener('click', () => {
+            const icon = btn.querySelector('.material-symbols-outlined');
+            icon.classList.add('animate-spin');
+            btn.innerHTML = 'Processing... <span class="material-symbols-outlined animate-spin">refresh</span>';
+            setTimeout(() => {
+                btn.innerHTML = 'Extract Insights <span class="material-symbols-outlined">bolt</span>';
+            }, 2000);
+        });
+    </script>
+</body></html>
