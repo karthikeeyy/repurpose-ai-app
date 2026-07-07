@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepurposeFlow | Strategy Dashboard</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#fffbff",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#bec6e0",
+                    "on-background": "#0b1c30",
+                    "secondary-container": "#8a4cfc",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container-high": "#dce9ff",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "secondary": "#712ae2",
+                    "surface": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "primary-container": "#131b2e",
+                    "on-primary-container": "#7c839b",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#45464d",
+                    "outline": "#76777d",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#131b2e",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed": "#eaddff",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#25005a",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#3980f4",
+                    "surface-bright": "#f8f9ff",
+                    "surface-tint": "#565e74",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary-container": "#001a42",
+                    "primary-fixed": "#dae2fd",
+                    "on-tertiary-fixed-variant": "#004395"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "lg": "48px",
+                    "sm": "12px",
+                    "xl": "80px",
+                    "container-max": "1280px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .animate-subtle-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .animate-subtle-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 12px 30px rgba(15, 23, 42, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface mb-24 md:mb-0">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-background shadow-sm dark:bg-surface-container">
+<div class="flex items-center justify-between px-gutter w-full max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border-2 border-secondary-container">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a tech entrepreneur with a warm smile, set against a blurred modern office background with soft lighting. The image follows a high-key light-mode aesthetic with clean lines and a vibrant, energetic feel, using a palette of soft purples and whites to maintain brand consistency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL1GOalK8SIpqa7hw3cymprpBYkpIDr_nQHX-EXflBJYQiph58dyo1hWw8DDBynDZQSZNJX7mS-LT-TmlcOlWxtZw7xgYXLLtWsYY-58BXhUP8qJ692GrkwikPlaMsQrbzRXf2SEWpEbEYgNf_B07z-7R_vGH45tuFjQxOomyEWKYJ4EWonNQzarWWAyh_lPOCYQmxoIvJxCM4K5O6KpDnZ1o_h6GaAvq_z_xz63RQeu6Zb_FLXkyRCrC4cRftmDtppc7jaxAC1DWj"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">RepurposeFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">settings</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-4 md:px-gutter py-8">
+<!-- Hero Section / Welcome -->
+<section class="mb-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">Overview</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mt-2">Strategy Dashboard</h2>
+</div>
+<div class="flex gap-3">
+<button class="bg-secondary text-on-secondary-container px-6 py-3 rounded-xl font-label-bold text-label-bold flex items-center gap-2 shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                        New Strategy
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Active Projects & Status -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-lg">
+<!-- Left: Active Projects (Bento Large) -->
+<div class="md:col-span-8 flex flex-col gap-6">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-outline-variant/30">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm">Active Projects</h3>
+<span class="font-label-bold text-label-bold text-secondary cursor-pointer hover:underline">View All</span>
+</div>
+<div class="space-y-4">
+<!-- Project Item 1 -->
+<div class="glass-card rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-subtle-lift cursor-pointer">
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">movie</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface">Productivity Hacks Transcript</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Source: YouTube Video</p>
+</div>
+</div>
+<div class="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
+<div class="flex flex-col items-end">
+<span class="flex items-center gap-1 text-secondary font-label-bold text-label-bold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                                        Processing
+                                    </span>
+<div class="w-24 h-1.5 bg-surface-container rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-secondary rounded-full w-2/3"></div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<!-- Project Item 2 -->
+<div class="glass-card rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-subtle-lift cursor-pointer">
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface">Design Systems Masterclass</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Source: Podcast Episode</p>
+</div>
+</div>
+<div class="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
+<div class="flex flex-col items-end">
+<span class="flex items-center gap-1 text-on-tertiary-container font-label-bold text-label-bold">
+                                        Drafts Ready
+                                    </span>
+<p class="text-[10px] text-outline font-label-caps uppercase mt-1">12 Clips Generated</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<!-- Project Item 3 -->
+<div class="glass-card rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-subtle-lift cursor-pointer">
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">article</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface">The Future of AI in UX</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Source: Blog Article</p>
+</div>
+</div>
+<div class="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
+<div class="flex flex-col items-end">
+<span class="flex items-center gap-1 text-primary font-label-bold text-label-bold">
+                                        Scheduled
+                                    </span>
+<p class="text-[10px] text-outline font-label-caps uppercase mt-1">Next: Tomorrow 10AM</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Status Indicators & Quick Stats (Bento Small) -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<!-- Circular Stats Card -->
+<div class="bg-primary-container rounded-xl p-6 text-on-primary-container flex flex-col items-center justify-center relative overflow-hidden h-full min-h-[300px]">
+
+<div class="relative z-10 text-center">
+<p class="font-label-caps text-label-caps mb-4 opacity-70">Weekly Velocity</p>
+<div class="text-6xl font-bold font-display-lg text-white mb-2">42</div>
+<p class="font-body-sm text-body-sm mb-6">Assets Repurposed</p>
+<div class="flex gap-2">
+<div class="px-3 py-1 rounded-full bg-secondary text-white text-[10px] font-label-bold uppercase">+14% Growth</div>
+</div>
+</div>
+</div>
+<!-- Status Summary -->
+<div class="bg-surface-container rounded-xl p-6 border border-outline-variant/30">
+<h3 class="font-label-bold text-label-bold mb-4 uppercase text-on-surface-variant">Pipeline Status</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant/20">
+<p class="text-2xl font-bold font-display-lg text-secondary">08</p>
+<p class="font-label-bold text-[10px] text-outline uppercase">Drafts</p>
+</div>
+<div class="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant/20">
+<p class="text-2xl font-bold font-display-lg text-on-tertiary-container">15</p>
+<p class="font-label-bold text-[10px] text-outline uppercase">Queue</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Repurposed List -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-sm text-headline-sm">Recent Performance</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto pb-4">
+<div class="flex gap-6 min-w-[800px]">
+<!-- Stats Card 1 -->
+<div class="w-1/3 min-w-[280px] bg-white rounded-2xl p-4 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-outline-variant/10 group cursor-pointer">
+<div class="relative h-48 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cinematic, vertical-format video thumbnail for a TikTok clip featuring a high-energy talking head with bold yellow captions. The background is a clean, minimalist creator studio with professional neon-rimmed lighting. The visual style is fast-paced, modern, and punchy, emphasizing the brand's Electric Blue and Purple accent colors in the lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtdkI5cFQ8owcUe05PLwgp4oSsgLAAhrGKGW22V7gpMMVgC5UjqVP8qJCrohBjAj-S86tB2mpByAFL-wMwM7_RAlROMpBCGSwvYZTI3v2kWuNSy_bNeP2puQ1TGJIcnjpIUSQ_QKcEtA3NkTEZD93LYlcNquN9muDDFtoSgAhRT3Bon7w_A6F6bgLES4NMzkhP1P61cGYRtijfal9d23CQ_ytP09L7pCkMalYI9GQIAYnj5Voyuc9GVdv5NtahfGY_wS1ZEOoAerR3"/>
+<div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 text-white text-[10px] font-bold">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span> 0:58
+                            </div>
+</div>
+<h4 class="font-label-bold text-label-bold text-on-surface line-clamp-1">3 Secret Productivity Hacks</h4>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/10 text-secondary text-[10px] font-bold uppercase">TikTok</span>
+<span class="text-outline text-[12px]">2h ago</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-label-bold text-[12px]">12.4k</span>
+</div>
+</div>
+</div>
+<!-- Stats Card 2 -->
+<div class="w-1/3 min-w-[280px] bg-white rounded-2xl p-4 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-outline-variant/10 group cursor-pointer">
+<div class="relative h-48 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An aesthetically pleasing Instagram Reel cover showing a bird's-eye view of a clean desk with a laptop, a coffee cup, and a minimalist journal. The lighting is soft morning sun, creating gentle shadows and a serene mood. The palette is dominated by neutral whites and creams with a single pop of Electric Purple from a digital illustration on the laptop screen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVboHCp6kzU5EbO2-SEKkou9OUYPwOL1ubg54BWqFK_xHer6h1NI-svCHOZUC8lkq9wjw3-gFUVwETiWp1uMxMgMyALqF41UPshuetCYhBSRzgFBCsIlWcUmHduZqlrfGCbXyQ4wXMlMDv58X52U6x7sS-9I9GwgrPc1k18rRAN1GaDjAZVqwmCU35CGTtzTL7PxxgFh26nWXwmXr2FqtB3OkcfoZ98yh4BsM_uU-lJsv0_WgsUYwz1PVJyCuMUmupwpCsAv7vZjHu"/>
+<div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 text-white text-[10px] font-bold">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span> 1:20
+                            </div>
+</div>
+<h4 class="font-label-bold text-label-bold text-on-surface line-clamp-1">Why UX Designers Love AI</h4>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase">Instagram</span>
+<span class="text-outline text-[12px]">5h ago</span>
+</div>
+<div class="flex items-center gap-1 text-on-tertiary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-bold text-[12px]">4.2k</span>
+</div>
+</div>
+</div>
+<!-- Stats Card 3 -->
+<div class="w-1/3 min-w-[280px] bg-white rounded-2xl p-4 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-outline-variant/10 group cursor-pointer">
+<div class="relative h-48 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated LinkedIn carousel slide featuring professional typography on a deep navy background. The design is systematic and clean, using thin Electric Blue lines to connect ideas. The overall atmosphere is authoritative and boardroom-ready, aligning with high-stakes social media strategy visuals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMazk2WSXInBGLgJw06wL-69KThzBZN348odIGj2v3TZdVljDpC93nyvwqqC4QCjyp8Jx6krm2HXvOmQ-hpdwSlILtBI1GM0V_NH1HuHq1LNRuG8NaUvheD0bFQNlBwFJu3uDKnELAN00pUbYcF46W8KSdktqAWP-ONGPKerkecoUrvZPO_wBTuiqFUyM4kbyDbVYtebcH5SC0IQSnZbm7pP4kW9d0ZU6QKAu-BVhftVNDQmFuDFToWIEZ1bFgPIkgJHsBgTyOrbhI"/>
+<div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 text-white text-[10px] font-bold">
+<span class="material-symbols-outlined text-[14px]">photo_library</span> 10 Slides
+                            </div>
+</div>
+<h4 class="font-label-bold text-label-bold text-on-surface line-clamp-1">The Strategy Behind Virality</h4>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase">LinkedIn</span>
+<span class="text-outline text-[12px]">8h ago</span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">mode_comment</span>
+<span class="font-label-bold text-[12px]">89</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile only / Top level destination logic) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-bold text-label-bold mt-1">Source</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-bold text-label-bold mt-1">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-label-bold text-label-bold mt-1">Editor</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-bold text-label-bold mt-1">Library</span>
+</a>
+</nav>
+<!-- Desktop Sidebar/Nav integration (Visual only as TopAppBar is small type) -->
+<script>
+        // Micro-interaction for project items
+        document.querySelectorAll('.animate-subtle-lift').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.backgroundColor = 'var(--surface-container-high)';
+                setTimeout(() => {
+                    item.style.backgroundColor = '';
+                }, 200);
+            });
+        });
+    </script>
+</body></html>
