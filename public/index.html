@@ -178,7 +178,7 @@
 <label class="font-label-bold text-label-bold text-on-surface-variant">PASTE TRANSCRIPT</label>
 <span class="text-xs text-outline italic">Supports up to 50k characters</span>
 </div>
-<textarea class="w-full h-64 bg-surface-container-lowest border-none rounded-lg p-4 font-body-md focus:ring-2 focus:ring-secondary transition-all resize-none placeholder:text-outline-variant" placeholder="Paste your raw text or video transcript here..."></textarea>
+<textarea id="transcript-input" class="w-full h-64 bg-surface-container-lowest border-none rounded-lg p-4 font-body-md focus:ring-2 focus:ring-secondary transition-all resize-none placeholder:text-outline-variant" placeholder="Paste your raw text or video transcript here..."></textarea>
 </div>
 <!-- URL Input -->
 <div class="glass-card rounded-xl p-6 custom-shadow flex flex-col justify-between">
@@ -187,7 +187,7 @@
 <span class="material-symbols-outlined text-secondary">link</span>
 <label class="font-label-bold text-label-bold text-on-surface-variant uppercase">Paste URL</label>
 </div>
-<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-md px-4 py-3 focus:border-secondary focus:ring-0 transition-colors" placeholder="https://youtube.com/..." type="text"/>
+<input id="url-input" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-md px-4 py-3 focus:border-secondary focus:ring-0 transition-colors" placeholder="https://youtube.com/..." type="text"/>
 <p class="text-[11px] text-outline mt-3">YouTube, Spotify, or Medium links supported.</p>
 </div>
 </div>
@@ -203,7 +203,7 @@
 </div>
 <!-- Primary CTA -->
 <div class="md:col-span-2 flex justify-end pt-4">
-<button class="bg-secondary text-on-secondary px-xl py-4 rounded-md font-label-bold text-label-bold flex items-center gap-3 hover:shadow-lg hover:shadow-secondary/20 hover:-translate-y-1 active:scale-95 transition-all duration-300">
+<button id="extract-btn" class="bg-secondary text-on-secondary px-xl py-4 rounded-md font-label-bold text-label-bold flex items-center gap-3 hover:shadow-lg hover:shadow-secondary/20 hover:-translate-y-1 active:scale-95 transition-all duration-300">
                         Extract Insights
                         <span class="material-symbols-outlined">bolt</span>
 </button>
@@ -213,19 +213,19 @@
 </main>
 <!-- Bottom Navigation Shell -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] rounded-t-xl">
-<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="index.html">
 <span class="material-symbols-outlined" data-weight="fill">add_circle</span>
 <span class="font-label-bold text-label-bold">Source</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="dashboard.html">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-bold text-label-bold">Projects</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="editor.html">
 <span class="material-symbols-outlined">edit_note</span>
 <span class="font-label-bold text-label-bold">Editor</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-primary transition-all active:scale-90" href="library.html">
 <span class="material-symbols-outlined">auto_stories</span>
 <span class="font-label-bold text-label-bold">Library</span>
 </a>
@@ -245,15 +245,54 @@
             textarea.closest('.glass-card').classList.remove('ring-2', 'ring-secondary/20');
         });
 
-        // Simple animation for the Extract Insights button
-        const btn = document.querySelector('button.bg-secondary');
-        btn.addEventListener('click', () => {
-            const icon = btn.querySelector('.material-symbols-outlined');
-            icon.classList.add('animate-spin');
-            btn.innerHTML = 'Processing... <span class="material-symbols-outlined animate-spin">refresh</span>';
-            setTimeout(() => {
-                btn.innerHTML = 'Extract Insights <span class="material-symbols-outlined">bolt</span>';
-            }, 2000);
+        // Extract Insights Logic
+        const extractBtn = document.getElementById('extract-btn');
+        const urlInput = document.getElementById('url-input');
+        const transcriptInput = document.getElementById('transcript-input');
+
+        extractBtn.addEventListener('click', async () => {
+            const url = urlInput.value.trim();
+            const transcript = transcriptInput.value.trim();
+
+            let type = '';
+            let content = '';
+
+            if (url) {
+                type = 'url';
+                content = url;
+            } else if (transcript) {
+                type = 'transcript';
+                content = transcript;
+            } else {
+                alert('Please provide a URL or a transcript.');
+                return;
+            }
+
+            const originalHTML = extractBtn.innerHTML;
+            extractBtn.innerHTML = 'Processing... <span class="material-symbols-outlined animate-spin">refresh</span>';
+            extractBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/extract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type, content })
+                });
+
+                const data = await response.json();
+                if (data.id) {
+                    window.location.href = `editor.html?source_id=${data.id}`;
+                } else {
+                    alert('Extraction failed: ' + (data.error || 'Unknown error'));
+                    extractBtn.innerHTML = originalHTML;
+                    extractBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during extraction.');
+                extractBtn.innerHTML = originalHTML;
+                extractBtn.disabled = false;
+            }
         });
     </script>
 </body></html>
