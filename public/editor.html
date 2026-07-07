@@ -148,10 +148,10 @@
 </div>
 <!-- Desktop Desktop Navigation (Top-level shell logic) -->
 <nav class="hidden md:flex items-center gap-8">
-<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Source</a>
-<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Projects</a>
-<a class="text-primary font-label-bold text-label-bold px-3 py-2 rounded-lg border-b-2 border-secondary" href="#">Editor</a>
-<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="#">Library</a>
+<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="index.html">Source</a>
+<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="dashboard.html">Projects</a>
+<a class="text-primary font-label-bold text-label-bold px-3 py-2 rounded-lg border-b-2 border-secondary" href="editor.html">Editor</a>
+<a class="text-on-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high transition-colors px-3 py-2 rounded-lg" href="library.html">Library</a>
 </nav>
 <div class="flex items-center gap-4">
 <button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-surface-container-high transition-colors">settings</button>
@@ -166,11 +166,11 @@
 <p class="text-on-surface-variant font-body-sm text-body-sm">Last saved: 2 minutes ago</p>
 </div>
 <div class="flex items-center gap-2">
-<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-bold text-label-bold hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">history</span>
-                    Versions
+<button id="save-draft-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-bold text-label-bold hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">save</span>
+                    Save Draft
                 </button>
-<button class="flex items-center gap-2 bg-secondary text-on-secondary px-6 py-2 rounded-lg font-label-bold text-label-bold shadow-lg hover:translate-y-[-2px] active:scale-95 transition-all">
+<button id="schedule-btn" class="flex items-center gap-2 bg-secondary text-on-secondary px-6 py-2 rounded-lg font-label-bold text-label-bold shadow-lg hover:translate-y-[-2px] active:scale-95 transition-all">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
                     Schedule
                 </button>
@@ -297,7 +297,7 @@
 <span class="material-symbols-outlined text-on-surface-variant">source</span>
 <div>
 <p class="text-label-caps text-on-surface-variant">ORIGINAL SOURCE</p>
-<p class="text-label-bold text-on-surface truncate">YouTube: How to Scale Content 2024</p>
+<p id="source-display" class="text-label-bold text-on-surface truncate">Loading source...</p>
 </div>
 </div>
 </div>
@@ -306,19 +306,19 @@
 </main>
 <!-- BottomNavBar -->
 <footer class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] flex justify-around items-center px-4 py-3 pb-safe rounded-t-xl">
-<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="index.html">
 <span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
 <span class="font-label-bold text-label-bold">Source</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="dashboard.html">
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span class="font-label-bold text-label-bold">Projects</span>
 </a>
-<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="#">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="editor.html">
 <span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
 <span class="font-label-bold text-label-bold">Editor</span>
 </a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="library.html">
 <span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
 <span class="font-label-bold text-label-bold">Library</span>
 </a>
@@ -326,7 +326,33 @@
 <!-- FAB (Suppressed based on context rules, but included for Dashboard-like screens if needed) -->
 <!-- The FAB is suppressed here as per rules for "Details" or "Task-Focused" screens. -->
 <script>
+        let currentInsights = null;
+        let currentSourceId = null;
+        let currentPlatform = 'linkedin';
+
+        async function initEditor() {
+            const urlParams = new URLSearchParams(window.location.search);
+            currentSourceId = urlParams.get('source_id');
+
+            if (currentSourceId) {
+                try {
+                    const response = await fetch(`/api/source/${currentSourceId}`);
+                    const data = await response.json();
+                    if (data.extracted_insights) {
+                        currentInsights = data.extracted_insights;
+                        document.getElementById('source-display').innerText = data.type === 'url' ? data.content : 'Transcript Snippet';
+                        switchPlatform('linkedin');
+                    }
+                } catch (error) {
+                    console.error('Error fetching source:', error);
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', initEditor);
+
         function switchPlatform(platform) {
+            currentPlatform = platform;
             const tabs = document.querySelectorAll('.platform-tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active-tab');
@@ -335,19 +361,55 @@
             });
 
             const activeTab = document.getElementById(`tab-${platform}`);
-            activeTab.classList.add('active-tab');
-            activeTab.classList.remove('text-on-surface-variant');
+            if (activeTab) {
+                activeTab.classList.add('active-tab');
+                activeTab.classList.remove('text-on-surface-variant');
+            }
 
-            // Simulate content change
             const editor = document.getElementById('editor-field');
-            if(platform === 'twitter') {
-                editor.innerHTML = `<p>The AI shift isn't coming—it's already here. 🧵<br><br>3 critical shifts creators need to know for 2024:<br><br>1/ Semantic Intent > Keywords<br>2/ Context > Copy-Paste<br>3/ Strategy > Generation<br><br>Full breakdown below 👇</p>`;
-            } else if(platform === 'newsletter') {
-                editor.innerHTML = `<h3>The Strategic Repurposing Playbook</h3><p>Hi everyone,</p><p>We talk a lot about AI tools, but we rarely talk about AI strategy...</p>`;
-            } else {
-                editor.innerHTML = `<p><strong>The AI shift isn't coming—it's already here.</strong></p><p>Most creators think about AI as a tool for generation...</p>`;
+            if (currentInsights) {
+                if (platform === 'twitter') {
+                    editor.innerText = currentInsights.twitter;
+                } else if (platform === 'newsletter') {
+                    editor.innerText = currentInsights.newsletter;
+                } else {
+                    editor.innerText = currentInsights.linkedin;
+                }
             }
         }
+
+        async function savePost(status) {
+            const content = document.getElementById('editor-field').innerText;
+            if (!currentSourceId) {
+                alert('No source identified.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        source_id: currentSourceId,
+                        platform: currentPlatform,
+                        content: content,
+                        status: status
+                    })
+                });
+                const data = await response.json();
+                if (data.id) {
+                    alert(`Post ${status === 'scheduled' ? 'scheduled' : 'saved'} successfully!`);
+                } else {
+                    alert('Failed to save post.');
+                }
+            } catch (error) {
+                console.error('Error saving post:', error);
+                alert('An error occurred.');
+            }
+        }
+
+        document.getElementById('save-draft-btn').addEventListener('click', () => savePost('draft'));
+        document.getElementById('schedule-btn').addEventListener('click', () => savePost('scheduled'));
 
         function copyContent() {
             const content = document.getElementById('editor-field').innerText;
